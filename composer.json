@@ -1,0 +1,13 @@
+{
+    "name": "php/resume-management",
+    "description": "A resume submitted by users can be resized by a manager and sent to the Employers",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "amirmohammadkhezri",
+            "email": "49806187+amirmohammadkhezri@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
