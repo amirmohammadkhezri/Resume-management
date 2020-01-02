@@ -20,6 +20,14 @@ if(isset($_POST['btn'])){
 	header("location:add_list_protocol.php");
 }
 ?>
+<?php
+
+
+$connections=config();
+$sqls="SELECT * FROM folder ORDER BY id DESC";
+$results=mysqli_query($connections,$sqls);
+
+?>
 
 
 
@@ -74,24 +82,17 @@ if(isset($_POST['btn'])){
 								<div class="row-col">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label class="col-sm-12 control-label">نام</label>
+											<label class="col-sm-12 control-label">نام و نام خانوادگی</label>
 											<div class="col-sm-12">
-												<input type="text" value="" name="frm[firstname]" class="form-control" placeholder="name" >
+												<input type="text" value="" name="frm[fullname]" class="form-control" placeholder="fullname" required>
 												
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label class="col-sm-12 control-label">نام خانوادگی</label>
+									<div class="col-sm-8">
 
-											<div class="col-sm-12">
-
-												<input type="text" value="" name="frm[lastname]" class="form-control" placeholder="Lastname" >
-										
-											</div>
-										</div>
-									</div>
+									
+									
 
 									<div class="col-sm-4">
 
@@ -99,10 +100,49 @@ if(isset($_POST['btn'])){
 											<label class="col-sm-12 control-label">شماره تماس</label>
 
 											<div class="col-sm-12">
-												<input type="text" value="" name="frm[tel]" class="form-control" placeholder="PhoneNumber">
+												<input type="text" value="" name="frm[tel]" class="form-control" placeholder="PhoneNumber" required>
+													
 											</div>
 										</div>
 
+									</div>
+
+
+
+									<div class="col-sm-4">
+
+										<div class="form-group">
+											<label class="col-sm-12 control-label">جنسیت</label>
+
+											<div class="col-sm-12">
+											<select name="frm[gender]" style="width: 150px";>
+												<option value="مرد" selected>مرد</option>
+																<option value="زن">زن</option>
+													</select>
+													
+											</div>
+										</div>
+
+									</div>
+									
+									
+									
+									<div class="col-sm-4">
+									
+									<div class="form-group">
+									<label class="col-sm-12 control-label">شماره آگهی</label>
+									<div class="col-sm-12">
+											<select name="frm[introNamber]" style="width: 150px";>
+												<?php
+													while($rows=mysqli_fetch_assoc($results)){
+														?>
+														<option value="<?php echo $rows['introNamber'].$rows['hashing']; ?>"><?php echo $rows['introNamber']; ?></option>
+														<?php
+													};
+												?>
+											</select>
+											</div>
+									</div>
 									</div>
 
 								</div>
@@ -112,25 +152,25 @@ if(isset($_POST['btn'])){
 									<div class="form-group">
 												<label class="col-sm-12 control-label">بارگذاری فایل رزومه</label>
 												<div class="col-sm-12">
-														<input type="file"  name="image" class="btn btn-info" multiple="1" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;فایل ها را انتخاب کنید" >
+														<input type="file"  name="image" class="btn btn-info" multiple="1" required data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;فایل ها را انتخاب کنید" >
 												</div>
 											<?php
 											$i=0;
-											for ($i=0; $i <= 3; $i++) { 
+											for ($i=0; $i <= 2; $i++) { 
 												echo '<br/>';
 											}?>
 										<hr/>
 										<div class="alert alert-warning" role="alert">
 										<h4 class="alert-heading">هشدار !</h4>
 										<p>امکان ویرایش رزومه ارسالی وجود ندارد</p>
-										<hr>
+										
 										<p class="mb-0">لطفا قبل از ارسال رزومه کاری خود ورودی های خود را چک کنید</p>
+
+	
+
 										</div>
-										<hr>
-								
 												<div class="form-group">
 													<label class="col-sm-12 control-label">&nbsp;</label>
-		
 													<div class="col-sm-12">
 															<input type="submit" class="btn btn-success" name="btn" value="ارسال رزومه کاری">
 													</div>
@@ -158,7 +198,7 @@ if(isset($_POST['btn'])){
 				</div>
 			</div>
 
-			<br />
+			
 
 
 
@@ -187,6 +227,7 @@ if(isset($_POST['btn'])){
 	<!-- Bottom scripts (common) -->
 
 	<script src="assets/js/bootstrap.js"></script>
+	<script src="assets/js/select2/select2.min.js"></script>
 	
 
 

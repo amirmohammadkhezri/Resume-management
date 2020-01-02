@@ -189,7 +189,7 @@ fclose($file_src_handle);
 					<br />
 
 					<!-- logo collapse icon -->
-					
+
 					<div class="sidebar-mobile-menu visible-xs">
 						<a href="#" class="with-animation">
 							<i class="entypo-menu"></i>
@@ -206,18 +206,14 @@ fclose($file_src_handle);
 					<li class="has-sub root-level">
 
 					<li>
-						<a href="add-protocol.php">
-							<span class="title">افزودن رزومه</span>
-						</a>
-					</li>
-					<li>
-						<a href="list_protocol.php">
-							<span class="title">لیست رزومه ها</span>
+						<a href="addFolder.php">
+							<span class="title">مدیریت پوشه ها</span>
 						</a>
 					</li>
 
+
 					</li>
-					
+
 					</li>
 				</ul>
 			</div>
@@ -234,7 +230,7 @@ fclose($file_src_handle);
 								<img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
 								<?php
 								echo "" . "  " . $_SESSION['username'];
-							
+
 								?>
 							</a>
 							<ul class="dropdown-menu">
@@ -305,8 +301,8 @@ fclose($file_src_handle);
 				<div class="col-sm-6 col-xs-6">
 
 					<div class="tile-stats tile-red" style="padding: -1px;height: 122px;">
-					<div class="icon"><i class="entypo-mail"></i></div>
-						
+						<div class="icon"><i class="entypo-mail"></i></div>
+
 						<div class="num" data-start="0" data-end="" data-postfix="" data-duration="0" data-delay="1500">
 							<?php
 							while ($row = mysqli_fetch_assoc($result)) {
@@ -320,133 +316,48 @@ fclose($file_src_handle);
 						<h3>تعداد رزومه های ارسالی</h3>
 					</div>
 				</div>
-			
-			
-		<div class="clear visible-xs"></div>
-		<div class="col-sm-6 col-xs-7" style="padding: -1px">
-			<div class="tile-stats tile-aqua" style="
+
+
+				<div class="clear visible-xs"></div>
+				<div class="col-sm-6 col-xs-7" style="padding: -1px">
+					<div class="tile-stats tile-aqua" style="
     											padding: 10px;">
-				<div class="icon"><i class="entypo-users"></i></div>
-				<h5>
-				<?php echo '<div class="stats">
-							&raquo; بازدید امروز: ' . $today_visit . '
-							&nbsp;	
-							&nbsp;	
-							&nbsp;	
-							&nbsp;	
-							&nbsp;	
-							&nbsp;	
-                            &raquo; بازدید دیروز: ' . $yesterday_visit . '
-						  بازدید کل: ' . $total_visit . '
-						  &nbsp;	
-							&nbsp;	
-							&nbsp;	
-							&nbsp;
-							&nbsp;
-							&nbsp;
-							&nbsp;
-						  &raquo; افراد آنلاین: ' . $online . '
-                        </div>';
-			?>
-				</h5>
-			</div>
-		</div>
-	</div>
-	<br />
-	<br />
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="panel-title">آخرین رزومه های ارسالی</div>
-
-					<div class="panel-options">
-
-						<a href="#" data-rel="collapse"><i class="entypo-down-open">بستن</i></a>
-						<a href="#" data-rel="reload"><i class="entypo-arrows-ccw">به روز رسانی</i></a>
-
+						<div class="icon"><i class="entypo-users"></i></div>
+						<h5>
+							<?php echo '<div class="stats">
+									&raquo; بازدید امروز: ' . $today_visit . '
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+									&raquo; بازدید دیروز: ' . $yesterday_visit . '
+									بازدید کل: ' . $total_visit . '
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&raquo; افراد آنلاین: ' . $online . '
+                       		 </div>';
+							?>
+						</h5>
 					</div>
 				</div>
-
-				<table class="table table-bordered table-responsive">
-					<thead>
-
-						<tr>
-							<th>نام</th>
-							<th>نام خانوادگی</th>
-							<th>شماره تماس</th>
-							<th>رزومه های ارسالی</th>
-						</tr>
-					</thead>
-
-					<tbody>
-
-						<?php
-						for ($i = 0; $i <= 10; $i++) {
-							$row = mysqli_fetch_assoc($result1);
-						?>
-							<tr>
-								<td><?php echo $row['firstname']; ?></td>
-								<td><?php echo $row['lastname']; ?></td>
-								<td><?php echo $row['tel']; ?></td>
-								<?php if ($row['id']) { ?>
-									<td class="text-center"><span class="inlinebar"> <a href="viewedit.php?id=<?php echo $row['id']; ?>">
-												<button type="button" class="btn btn-success btn-xs">مشاهده رزومه ارسال شده
-												</button>
-											</a>
-										<?php
-									}
-										?>
-									</td>
-								<?php } ?>
-							</tr>
-					</tbody>
-				</table>
 			</div>
+
+
+			<br />
+
 		</div>
+		<!-- Imported styles on this page -->
 
-	</div>
-	<br />
-	<script type="text/javascript">
-		// Code used to add Todo Tasks
-		jQuery(document).ready(function($) {
-			var $todo_tasks = $("#todo_tasks");
+		<!-- Custom CSS Link -->
+		<link rel="stylesheet" href="assets/css/custom.css">
+		<!-- Bottom scripts (common) -->
 
-			$todo_tasks.find('input[type="text"]').on('keydown', function(ev) {
-				if (ev.keyCode == 13) {
-					ev.preventDefault();
+		<script src="assets/js/bootstrap.js"></script>
 
-					if ($.trim($(this).val()).length) {
-						var $todo_entry = $(
-							'<li><div class="checkbox checkbox-replace color-white"><input type="checkbox" /><label>' +
-							$(this).val() + '</label></div></li>');
-						$(this).val('');
+		<!-- Imported scripts on this page -->
 
-						$todo_entry.appendTo($todo_tasks.find('.todo-list'));
-						$todo_entry.hide().slideDown('fast');
-						replaceCheckboxes();
-					}
-				}
-			});
-		});
-	</script>
-	</div>
-	<!-- Imported styles on this page -->
-	
-	<!-- Custom CSS Link -->
-	<link rel="stylesheet" href="assets/css/custom.css">
-	<!-- Bottom scripts (common) -->
-	
-	<script src="assets/js/bootstrap.js"></script>
-	
-	<!-- Imported scripts on this page -->
-	
 
-	
 
-	<!-- JavaScripts initializations and stuff -->
-	<script src="assets/js/neon-custom.js"></script>
-	<!-- Demo Settings -->
+
+		<!-- JavaScripts initializations and stuff -->
+		<script src="assets/js/neon-custom.js"></script>
+		<!-- Demo Settings -->
 
 
 </body>

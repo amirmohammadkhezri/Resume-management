@@ -1,7 +1,6 @@
-
-
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
+
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -12,27 +11,29 @@
 
 	<link rel="icon" href="assets/images/favicon.ico">
 
-	<title>سیستم سازمانی  ارسال رزومه</title>
+	<title>سیستم سازمانی ارسال رزومه</title>
 
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
 
 
 </head>
+
 <body class="page-body" data-url="http://neon.dev">
 
 
-<div class="col-md-12 col-sm-12 clearfix">
+	<div class="col-md-12 col-sm-12 clearfix">
 
-                        <div class="alert alert-success" role="">
-						<h2 class="">با موفقیت ثبت سیستم شد</h2>
-                            <h3 class=""> از ارسال رزومه کاری خود سپاس گذاریم . در صورت تایید با شما تماس میگیریم</h3>
-                        </div>
-
-
-					</div>
+		<div class="alert alert-success" role="">
+			<h2 class="">با موفقیت ثبت سیستم شد</h2>
+			<h3 class=""> از ارسال رزومه کاری خود سپاس گذاریم . در صورت تایید با شما تماس میگیریم</h3>
+		</div>
 
 
-	
+	</div>
+
+
+
 
 </body>
+
 </html>

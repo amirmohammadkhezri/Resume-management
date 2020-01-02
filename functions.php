@@ -15,7 +15,7 @@ session_start();
 
 	function addmenu($data,$to){
 	$connection=config();
-    $sql="INSERT INTO menu_tbl (firstname,lastname,run,pivast,tel) VALUES('$data[firstname]','$data[lastname]','$data[run]','$to','$data[tel]')";
+    $sql="INSERT INTO menu_tbl (fullname,introNamber,run,pivast,tel,gender) VALUES('$data[fullname]','$data[introNamber]','$data[run]','$to','$data[tel]','$data[gender]')";
     
 	mysqli_query($connection,$sql);
 	}
