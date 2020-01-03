@@ -54,7 +54,7 @@ if (isset($_POST['btn'])) {
 		<div class="main-content">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="panel panel-info">
+					<div class="panel panel-success">
 						<div class="panel-heading">
 							<div class="panel-title">
 								ساخت پوشه
@@ -101,7 +101,7 @@ if (isset($_POST['btn'])) {
 						</div>
 						<br />
 						<hr />
-						<input type="submit" class="btn btn-info" name="btn" value="ساخت پوشه">
+						<input type="submit" class="btn btn-success" name="btn" value="ساخت پوشه">
 
 
 						</form>

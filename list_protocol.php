@@ -1,10 +1,12 @@
 <?php
 include_once 'functions.php';
 include_once 'user_functions.php';
-$introNamber = $_GET['id'];
-if ($introNamber > 99999) {
+$introNamber = $_GET['secret'];
+$string = md5(rand(1000, 7800787));
+
+if (strlen($introNamber) == strlen($string)) {
 	$connection = config();
-	$sql = "SELECT * FROM menu_tbl WHERE introNamber LIKE '%$introNamber%'";
+	$sql = "SELECT * FROM menu_tbl WHERE introNamber LIKE '%$introNamber'";
 	$result = mysqli_query($connection, $sql);
 
 ?>

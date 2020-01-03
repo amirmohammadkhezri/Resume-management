@@ -26,7 +26,7 @@ if (!isset($_SESSION['username'])) {
 
 	<link rel="icon" href="assets/images/favicon.ico">
 
-	<title>سیستم سازمانی مدیریت پروتکل</title>
+	<title>سیستم مدیریت رزومه ها</title>
 
 	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
 	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
@@ -106,11 +106,6 @@ if (!isset($_SESSION['username'])) {
 							<span class="title">مدیریت پوشه ها</span>
 						</a>
 					</li>
-					<li>
-						<a href="list_protocol.php">
-							<span class="title">لیست رزومه ها</span>
-						</a>
-					</li>
 
 					</li>
 
@@ -177,49 +172,74 @@ if (!isset($_SESSION['username'])) {
 						minimumResultsForSearch: -1
 					});
 				});
+
+				$('#send').setTimeout(function() {
+					button.removeAttr('enable');
+				}, 1000);;
 			</script>
 
 			<table class="table table-bordered datatable" id="table-1">
 				<thead>
 					<a href="newfolder.php">
-						<button type="button" class="btn btn-success">ایجاد پوشه</button>
+
+						<button type="button" class="btn btn-success"><i class="entypo-folder"> </i>ایجاد پوشه</button>
 					</a>
 					<br />
 					<br />
 					<br />
 					<tr>
+
 						<th>ردیف</th>
 						<th data-hide="phone">عنوان</th>
 						<th>شماره آگهی</th>
 
 
-						<th data-hide="phone,tablet">رزومه ها</th>
+						<th data-hide="phone,tablet">حذف</th>
+						<th data-hide="phone,tablet">بروزرسانی لینک ها</th>
 					</tr>
 				</thead>
 				<tbody>
+
 					<?php
 					while ($row = mysqli_fetch_assoc($result)) {
 					?>
 						<tr class="odd gradeX">
 
 							<td><?php echo $row['id']; ?></td>
-							<td><?php echo $row['title']; ?></td>
+							<td>
+								<a href="list_protocol.php?secret=<?php echo $row['hashing']; ?>"><?php echo '<i class="entypo-folder" style="color: darkorange;"></i>' . '&nbsp;' . $row['title']; ?></a>
+							</td>
 							<td><?php echo $row['introNamber']; ?></td>
+							<script>
+								function confirmation() {
+									var result = confirm("Are you sure to delete?");
+									if (result) {
+										// Delete logic goes here
+									}
+								}
+							</script>
+							<td class="text-center">
+								<a href="delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm(' آیا از حذف پوشه مطمعا هستید امکان بازیابی پوشه پاک شده وجود ندارد')">
+									<button type="button" class="btn btn-red btn-xs">حذف پوشه ×</button>
+								</a>
 
-
+								<!-- id="urlCopied"  -->
+								<!-- <textarea onclick="myFunction()" class="btn btn-blue" id="urlCopied" rows="1" cols="30"></textarea> -->
+							</td>
 
 							<td class="text-center">
-								<a href="list_protocol.php?id=<?php echo $row['hashing']; ?>">
-									<button type="button" class="btn btn-success btn-xs">مشاده رزومه ها </button>
+								<a href="generate.php?id=<?php echo $row['hashing']; ?>" onclick="return confirm('میخواد لینک جدید بسازید ؟ ')">
+
+									<button type="button" id="send" class="btn btn-secondary  btn-xs" disabled>دریافت لینک جدید +</button>
 								</a>
 
 							<?php
 						}
+
 							?>
 
-
-
 							<!-- id="urlCopied"  -->
+							<input type="hidden" value="<?php echo (md5(rand(1000, 7800787))) ?>" name="frm[hashing]">
 
 
 							<!-- <textarea onclick="myFunction()" class="btn btn-blue" id="urlCopied" rows="1" cols="30"></textarea> -->
