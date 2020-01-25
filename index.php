@@ -7,45 +7,33 @@ if (!isset($_SESSION['username'])) {
 $conn = config();
 $sql = "SELECT * FROM menu_tbl ORDER BY id DESC limit 1";
 $result = mysqli_query($conn, $sql);
-
 $connection = config();
 $sql1 = "SELECT * FROM menu_tbl ORDER BY id DESC";
 $result1 = mysqli_query($connection, $sql1);
-
-
 //اختلاف زمانی سرور
 $time_zone = 12600;
-
 //تاریخ امروز
 $today = date("Y-m-d", time() + $time_zone);
-
 //تاریخ دیروز
 $yesterday = date("Y-m-d", time() - 86400 + $time_zone);
-
 //آدرس فایل
 $file_src = 'visit-stats.txt';
 chmod($file_src, 0755);
-
 //خواندن فایل
 $read_file = file_get_contents($file_src);
-
 //اگر فایل خالی نبود
 if (filesize($file_src) > 0 || $read_file != '') {
 	$split_file = explode('|', $read_file);
-
 	//print_r($split_file);
 	$modify = $split_file[3];
-
 	//اگر تاریخ آخرین ویرایش برابر تاریخ امروز نبود
 	if ($modify != $today) {
 		$today_visit = 1;
-
 		if ($modify == $yesterday) {
 			$yesterday_visit = $split_file[0];
 		} else {
 			$yesterday_visit = 0;
 		}
-
 		$total_visit = $split_file[2] + 1;
 		$last_modify = $today;
 	} //اگر تاریخ آخرین ویرایش برابر امروز بود
@@ -89,7 +77,6 @@ foreach ($online_file as $key => $value) {
 		unset($online_file[$key]);
 	}
 }
-
 //حذف آی پی های قدیمی و آی پی فعلی
 foreach ($online_file as $key => $value) {
 	$user_ip_time = explode("|", $value);
@@ -101,7 +88,6 @@ foreach ($online_file as $key => $value) {
 		unset($online_file[$key]);
 	}
 }
-
 //محاسبه تعداد افراد آنلاین
 $online = 1;
 foreach ($online_file as $online_users) {
@@ -121,29 +107,19 @@ foreach ($online_file as $key => $value) {
 $file_src_handle = fopen($config_array['file_name'], 'w+');
 fwrite($file_src_handle, $new_online);
 fclose($file_src_handle);
-
-//////////////// Webgoo.ir ///////////////
-
 //گرفتن خروجی
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
-
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="Neon Admin Panel" />
 	<meta name="author" content="" />
-
 	<link rel="icon" href="assets/images/favicon.ico">
-
 	<title>سیستم سازمانی مدیریت رزومه</title>
-
 	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
 	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
@@ -187,9 +163,6 @@ fclose($file_src_handle);
 						</a>
 					</div>
 					<br />
-
-					<!-- logo collapse icon -->
-
 					<div class="sidebar-mobile-menu visible-xs">
 						<a href="#" class="with-animation">
 							<i class="entypo-menu"></i>
@@ -204,16 +177,12 @@ fclose($file_src_handle);
 						</a>
 					</li>
 					<li class="has-sub root-level">
-
 					<li>
 						<a href="addFolder.php">
 							<span class="title">مدیریت پوشه ها</span>
 						</a>
 					</li>
-
-
 					</li>
-
 					</li>
 				</ul>
 			</div>
@@ -261,7 +230,6 @@ fclose($file_src_handle);
 				</div>
 				<!-- Raw Links -->
 				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
 					<ul class="list-inline links-list pull-right">
 						<li>
 							<a href="login.php">
@@ -299,10 +267,8 @@ fclose($file_src_handle);
 			</script>
 			<div class="row">
 				<div class="col-sm-6 col-xs-6">
-
 					<div class="tile-stats tile-red" style="padding: -1px;height: 122px;">
 						<div class="icon"><i class="entypo-mail"></i></div>
-
 						<div class="num" data-start="0" data-end="" data-postfix="" data-duration="0" data-delay="1500">
 							<?php
 							while ($row = mysqli_fetch_assoc($result)) {
@@ -312,12 +278,9 @@ fclose($file_src_handle);
 									echo '<div>0</div>';
 								}
 							} ?> </div>
-
 						<h3>تعداد رزومه های ارسالی</h3>
 					</div>
 				</div>
-
-
 				<div class="clear visible-xs"></div>
 				<div class="col-sm-6 col-xs-7" style="padding: -1px">
 					<div class="tile-stats tile-aqua" style="
@@ -337,27 +300,11 @@ fclose($file_src_handle);
 					</div>
 				</div>
 			</div>
-
-
 			<br />
-
 		</div>
-		<!-- Imported styles on this page -->
-
-		<!-- Custom CSS Link -->
 		<link rel="stylesheet" href="assets/css/custom.css">
-		<!-- Bottom scripts (common) -->
-
 		<script src="assets/js/bootstrap.js"></script>
-
-		<!-- Imported scripts on this page -->
-
-
-
-
-		<!-- JavaScripts initializations and stuff -->
 		<script src="assets/js/neon-custom.js"></script>
-		<!-- Demo Settings -->
 
 
 </body>
