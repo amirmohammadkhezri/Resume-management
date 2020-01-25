@@ -7,12 +7,9 @@
 	$row=mysqli_fetch_assoc($result);
 	$folder="uploader/".$row['name'];
 	$file=$row['pivast'];
-
 	unlink($file);
 	rmdir($folder);
 	$sql="DELETE FROM folder WHERE id='$id'";
 	mysqli_query($connection,$sql);
 	header("location:addFolder.php");
-
-
-	?>
+?>
